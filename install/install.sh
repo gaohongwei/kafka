@@ -1,4 +1,4 @@
-pkgs="default-jre zookeeperd nodejs npm supervisor"
+pkgs="default-jre zookeeperd  supervisor" #nodejs npm
 for pkg in $pkgs;do
   dpkg -s $pkg 2>/dev/null >/dev/null || apt-get install $pkg -y
 
@@ -21,9 +21,8 @@ wget $www -O kafka.tgz
 
 kafka=/opt/kafka
 mkdir $kafka
-tar -vxf kafka.tgz -C $kafka --strip-components=1
 tar -xvf kafka.tgz -C $kafka --strip 1
-
+tar -vxf kafka.tgz -C $kafka --strip-components=1
 
 
 ##
