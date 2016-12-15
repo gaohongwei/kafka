@@ -9,6 +9,7 @@ stdout_logfile=/var/log/supervisor/kafka.log
 stderr_logfile=/var/log/supervisor/kafka.err
 stopasgroup=true
 
+# Don't need this one
 #/etc/supervisor/conf.d/zkeeper.conf
 [program:zkeeper]
 command=/opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
