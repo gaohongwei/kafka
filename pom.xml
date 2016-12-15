@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mapr.com</groupId>
+    <groupId>wei.com</groupId>
     <artifactId>kafka-examples</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -47,7 +47,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.mapr.examples.Run</mainClass>
+                            <mainClass>com.wei.app.Run</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -75,7 +75,7 @@
 
                     <!-- (optional) name for binary executable, if not set will just -->
                     <!-- make the regular jar artifact executable -->
-                    <programFile>kafka-example</programFile>
+                    <programFile>kafka-app</programFile>
                 </configuration>
 
                 <executions>
