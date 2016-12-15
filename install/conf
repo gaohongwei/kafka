@@ -1,0 +1,20 @@
+#/etc/supervisor/conf.d/kafka.conf
+[program:kafka]
+command=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
+directory=/opt/kafka
+user=kafka
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/kafka.log
+stderr_logfile=/var/log/supervisor/kafka.err
+stopasgroup=true
+
+#/etc/supervisor/conf.d/zkeeper.conf
+[program:zkeeper]
+command=/opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
+directory=/opt/kafka
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/zkeeper.log
+stderr_logfile=/var/log/supervisor/zkeeper.err
+stopasgroup=true
