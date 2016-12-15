@@ -1,4 +1,4 @@
-package com.mapr.examples;
+package com.wei.app;
 
 import com.google.common.io.Resources;
 import org.apache.kafka.clients.producer.KafkaProducer;
