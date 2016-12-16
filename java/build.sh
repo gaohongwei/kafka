@@ -12,3 +12,7 @@ export CLASSPATH="/opt/kafka/libs/*:."
 
 javac Producer.java
 java  Producer 
+
+
+update-alternatives --config java
+update-alternatives --config javac
