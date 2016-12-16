@@ -2,6 +2,13 @@
 apt install openjdk-9-jdk-headless maven -y
 git clone https://github.com/gaohongwei/kafka
 
-javac -cp "/opt/kafka/libs/*" *.java
+apt install openjdk-9-jdk-headless
+javac -cp "/opt/kafka/libs/*" Producer.java
+java  -cp "/opt/kafka/libs/*":. Producer 
 java  -cp "/opt/kafka/libs/*":. SimpleProducer test
-java  -cp "/opt/kafka/libs/*":. Producer test
+
+view /etc/environment
+export CLASSPATH="/opt/kafka/libs/*:."
+
+javac Producer.java
+java  Producer 
