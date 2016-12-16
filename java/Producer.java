@@ -22,21 +22,19 @@ public class Producer {
             producer = new KafkaProducer<>(properties);
         }
 
+        String message = "Message ";
         try {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 100000; i++) {
                 // send lots of messages
                 producer.send(new ProducerRecord<String, String>(
-                        "fast-messages",
-                        String.format("{\"type\":\"test\", \"t\":%.3f, \"k\":%d}", System.nanoTime() * 1e-9, i)));
+                        "fast-messages", message + i ));
 
                 // every so often send to a different topic
-                if (i % 1000 == 0) {
+                if (i % 10000 == 0) {
                     producer.send(new ProducerRecord<String, String>(
-                            "fast-messages",
-                            String.format("{\"type\":\"marker\", \"t\":%.3f, \"k\":%d}", System.nanoTime() * 1e-9, i)));
+                            "fast-messages", message + i ));
                     producer.send(new ProducerRecord<String, String>(
-                            "summary-markers",
-                            String.format("{\"type\":\"other\", \"t\":%.3f, \"k\":%d}", System.nanoTime() * 1e-9, i)));
+                            "summary-markers", message + i ));
                     producer.flush();
                     System.out.println("Sent msg number " + i);
                 }
