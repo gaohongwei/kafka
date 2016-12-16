@@ -1,9 +1,11 @@
 pkgs="default-jre zookeeperd  supervisor" #nodejs npm
 for pkg in $pkgs;do
   dpkg -s $pkg 2>/dev/null >/dev/null || apt-get install $pkg -y
-
 done
 #apt-get install $pkgs -y
+#Fix supervisor
+systemctl enable supervisor
+systemctl start supervisor
 
 useradd kafka -m
 #passwd kafka
