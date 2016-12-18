@@ -2,11 +2,16 @@
 import java.net.*;
 import java.io.*;
 
-public class GreetingServer {
-   public static void main(String[] args) throws IOException {
+public class GreetingServer extends Thread {
+   private ServerSocket serverSocket;
+
+   public GreetingServer(int port) throws IOException {
+      serverSocket = new ServerSocket(port);
+      //serverSocket.setSoTimeout(10000);
+   }
+
+   public void run_server(){
       try{
-         int port = Integer.parseInt(args[0]);
-         ServerSocket serverSocket = new ServerSocket(port);
          System.out.println("Waiting for client on port " +
             serverSocket.getLocalPort() + "...");
          Socket server = serverSocket.accept();
@@ -22,10 +27,22 @@ public class GreetingServer {
          System.out.println("Socket timed out!");
       }catch(IOException e) {
          e.printStackTrace();
-      }catch (Exception e0){
-         e0.printStackTrace();
+      }
+   }
+
+   public void run() {
+      while(true) {
+         run_server();
+      }
+   }
+
+   public static void main(String [] args) {
+      int port = Integer.parseInt(args[0]);
+      try {
+         Thread t = new GreetingServer(port);
+         t.start();
+      }catch(IOException e) {
+         e.printStackTrace();
       }
    }
 }
-
-
