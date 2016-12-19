@@ -1,5 +1,6 @@
 # https://github.com/bpot/poseidon
 # http://ruby-doc.org/stdlib-1.9.3/libdoc/socket/rdoc/TCPServer.html
+# https://github.com/zendesk/ruby-kafka
 require 'socket'
 require 'poseidon'
 
