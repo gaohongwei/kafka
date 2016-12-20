@@ -9,14 +9,18 @@ import java.util.Properties;
 import java.util.Random;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class puller {
   public static void main(String[] args) throws IOException {
     // set up house-keeping
     // and the consumer
     PrintWriter printWriter = null;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+    String ts  = dateFormat.format(new Date());
     try{
-      FileWriter fileWriter = new FileWriter("/tmp/update.txt");
+      FileWriter fileWriter = new FileWriter("/tmp/update." + ts );
       printWriter = new PrintWriter(fileWriter);
 
       KafkaConsumer<String, String> consumer;
