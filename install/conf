@@ -9,6 +9,16 @@ stdout_logfile=/var/log/supervisor/kafka.log
 stderr_logfile=/var/log/supervisor/kafka.err
 stopasgroup=true
 
+[program:pusher]
+command=java  -cp "/opt/kafka/libs/*:."  Pusher
+directory=/opt/kafka/class
+user=kafka
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/pusher.log
+stderr_logfile=/var/log/supervisor/pusher.err
+stopasgroup=true
+
 # Don't need this one
 #/etc/supervisor/conf.d/zkeeper.conf
 [program:zkeeper]
