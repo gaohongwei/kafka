@@ -8,6 +8,7 @@ java  -cp "/opt/kafka/libs/*":. Producer
 java  -cp "/opt/kafka/libs/*":. SimpleProducer test
 
 view /etc/environment
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export CLASSPATH="/opt/kafka/libs/*:."
 
 javac Producer.java
