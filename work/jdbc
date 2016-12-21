@@ -11,3 +11,5 @@ PersonID int,
 LastName varchar(255),
 FirstName varchar(255)
 );
+
+insert into Persons (LastName,FirstName) values('lname','fname');
