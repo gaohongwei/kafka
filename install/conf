@@ -19,14 +19,14 @@ stdout_logfile=/var/log/supervisor/pusher.log
 stderr_logfile=/var/log/supervisor/pusher.err
 stopasgroup=true
 
-[program:puller]
-command=java  -cp "/opt/kafka/libs/*:."  puller
+[program:writer]
+command=java  -cp "/opt/kafka/libs/*:."  writer
 directory=/opt/kafka/class
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/supervisor/pusher.log
-stderr_logfile=/var/log/supervisor/pusher.err
+stdout_logfile=/var/log/supervisor/writer.log
+stderr_logfile=/var/log/supervisor/writer.err
 stopasgroup=true
 
 # Don't need this one
