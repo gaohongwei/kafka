@@ -1,4 +1,4 @@
-// File Name GateWay.java
+// File Name Writer.java
 import java.net.*;
 import java.io.*;
 /*
