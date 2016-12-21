@@ -20,7 +20,7 @@ stderr_logfile=/var/log/supervisor/pusher.err
 stopasgroup=true
 
 [program:writer]
-command=java  -cp "/opt/kafka/libs/*:."  writer
+command=java  -cp "/opt/kafka/libs/*:/usr/share/java/mysql-connector-java.jar:."  Writer
 directory=/opt/kafka/class
 user=kafka
 autostart=true
