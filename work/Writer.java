@@ -13,12 +13,13 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.sql.*;
 
-public class Writer2DB {
+public class Writer {
   public static void main(String[] args) throws IOException {
     Boolean to_db = false;
+    String fname = null;
     if ( args.length == 0 ||  args[0] == "db" || args[0] == "database" ) to_db = true;
     final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    String DB_URL = "jdbc:mysql://localhost/keys";
+    String DB_URL = "jdbc:mysql://localhost/keydb";
     String USER = "root";
     String PASS = "dbroot";
     Connection conn = null;
