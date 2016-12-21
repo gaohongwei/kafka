@@ -15,25 +15,47 @@ import java.sql.*;
 
 public class Writer {
   public static void main(String[] args) throws IOException {
-    Boolean to_db = false;
     String fname = null;
-    if ( args.length == 0 ||  args[0] == "db" || args[0] == "database" ) to_db = true;
-    final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    Boolean to_db = false;
+    Boolean to_file = false;
+    if ( args.length == 0 ){
+      SimpleDateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+      String ts  = dateFormat.format(new Date());
+      fname = "/tmp/update." + ts;
+    } else {
+      switch (args[0]) {
+        case "db":
+        case "database":
+          to_db = true;
+          break;
+        default:
+          fname = args[0];
+      }
+    }
+
+    if ( fname == null ) to_db = true;
+
+    // DB
+    String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     String DB_URL = "jdbc:mysql://localhost/keydb";
     String USER = "root";
     String PASS = "dbroot";
     Connection conn = null;
     Statement stmt = null;
 
+    // File output
     PrintWriter printWriter = null;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
-    String ts  = dateFormat.format(new Date());
+    FileWriter fileWriter = null;
     try{
-      FileWriter fileWriter = new FileWriter("/tmp/update." + ts );
-      printWriter = new PrintWriter(fileWriter);
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      stmt = conn.createStatement();
+      if (to_db){
+        Class.forName(JDBC_DRIVER);
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        stmt = conn.createStatement();
+      }
+      if (to_file){
+        fileWriter = new FileWriter(fname);
+        printWriter = new PrintWriter(fileWriter);
+      }
 
       KafkaConsumer<String, String> consumer;
       try (InputStream props = Resources.getResource("consumer.props").openStream()) {
@@ -51,7 +73,8 @@ public class Writer {
          for (ConsumerRecord<String, String> record : records){
             if (to_db){
               stmt.executeUpdate(record.value());
-            } else {
+            }
+            if (to_file){
               printWriter.printf("offset: %d, value: %s, key: %s\n", record.offset(), record.value(), record.key());
             }
          }
