@@ -1,0 +1,13 @@
+list="mysql-server"
+apt-get -y install mysql-server
+apt-get install libmysql-java #jdbc
+export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
+echo $CLASSPATH
+
+create database keydb;
+CREATE TABLE Persons
+(
+PersonID int,
+LastName varchar(255),
+FirstName varchar(255)
+);
