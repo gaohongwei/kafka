@@ -13,3 +13,7 @@ FirstName varchar(255)
 );
 
 insert into Persons (LastName,FirstName) values('lname','fname');
+
+insert into Persons (LastName,FirstName) values('lname','fname');
+message = "insert into Persons (LastName,FirstName) values('lname','fname')";
+client.write(message);
