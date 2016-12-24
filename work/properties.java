@@ -1,3 +1,5 @@
+java.util.Properties can read from an InputStream or Reader.
+props.load(new StringReader(string));  
 
   public void Props() {
       try {
@@ -37,4 +39,4 @@ public class URLConnectionReader {
     }
 }
 
-props.load(new StringReader(string));
+
