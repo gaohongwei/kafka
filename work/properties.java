@@ -36,3 +36,5 @@ public class URLConnectionReader {
         in.close();
     }
 }
+
+props.load(new StringReader(string));
