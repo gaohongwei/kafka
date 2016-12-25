@@ -1,29 +1,43 @@
 import java.lang.*;
 import java.io.*;
-public class MyThread implements Runnable {
+public class Worker implements Runnable {
   public void run() {
     try {
       for (int i = 0;;i++) {            
         Thread.sleep(1000);
         System.out.println("Hello "+ i);
       } 
+    } catch (InterruptedException ie) {
+        System.out.printf("InterruptedException in thread, wait...");      
     } catch (Exception ie) {
-        System.out.printf("InterruptedException by user, wait...");             
+        System.out.printf("Exception...");             
     }          
   }
-  public void shutdown() {
-    System.out.printf("shutdown"); 
+  public void cleanup() {
+    System.out.printf("Will cleanup soon"); 
   }
 
-  public static void main(String args[]){  
-    MyThread m1=new MyThread();  
-    Thread t1 =new Thread(m1);  
-    t1.start(); 
+  public static void main1(String args[]){  
+    Worker worker=new Worker();  
+    Thread worker_thread =new Thread(worker);  
+    worker_thread.start(); 
     try {
-      Thread.currentThread().sleep(10000);
+        while(true)Thread.sleep(1000);
     } catch (InterruptedException ie) {
-        System.out.printf("InterruptedException by user, wait...");      
+        System.out.printf("InterruptedException in main thread, wait...");    
+    } catch (Exception ie) {
+        System.out.printf("Exception...");             
+    } 
+    worker.cleanup();
+  }  
+  public static void main2(String args[]){  
+    Worker worker=new Worker();  
+    worker.run(); 
+    try {
+        Thread.sleep(10000);
+    } catch (InterruptedException ie) {
+        System.out.printf("InterruptedException in main thread, wait...");    
     }
-    m1.shutdown();
-  }      
+    worker.cleanup();
+  }   
 }
