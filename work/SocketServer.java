@@ -2,7 +2,7 @@
 import java.net.*;
 import java.io.*;
 
-public class SocketgServer {
+public class SocketServer {
    public static void main(String[] args) throws IOException {
       try{
          int port = Integer.parseInt(args[0]);
