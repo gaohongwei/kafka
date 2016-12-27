@@ -1,12 +1,12 @@
-#/etc/supervisor/conf.d/data_sync.conf
+#/etc/supervisor/conf.d/db_sync.conf
 [program:cluster]
 command=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
 directory=/opt/kafka
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/data_sync/cluster.log
-stderr_logfile=/var/log/data_sync/cluster.err
+stdout_logfile=/var/log/db_sync/cluster.log
+stderr_logfile=/var/log/db_sync/cluster.err
 stopasgroup=true
 
 [program:sender]
@@ -15,8 +15,8 @@ directory=/opt/kafka/class
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/data_sync/sender.log
-stderr_logfile=/var/log/data_sync/sender.err
+stdout_logfile=/var/log/db_sync/sender.log
+stderr_logfile=/var/log/db_sync/sender.err
 stopasgroup=true
 
 [program:writer]
@@ -25,6 +25,6 @@ directory=/opt/kafka/class
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/data_sync/writer.log
-stderr_logfile=/var/log/data_sync/writer.err
+stdout_logfile=/var/log/db_sync/writer.log
+stderr_logfile=/var/log/db_sync/writer.err
 stopasgroup=true
