@@ -1,22 +1,22 @@
-#/etc/supervisor/conf.d/kafka.conf
-[program:kafka]
+#/etc/supervisor/conf.d/data_sync.conf
+[program:cluster]
 command=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
 directory=/opt/kafka
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/supervisor/kafka.log
-stderr_logfile=/var/log/supervisor/kafka.err
+stdout_logfile=/var/log/data_sync/cluster.log
+stderr_logfile=/var/log/data_sync/cluster.err
 stopasgroup=true
 
-[program:pusher]
-command=java  -cp "/opt/kafka/libs/*:."  Pusher
+[program:sender]
+command=java  -cp "/opt/kafka/libs/*:."  Sender
 directory=/opt/kafka/class
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/supervisor/pusher.log
-stderr_logfile=/var/log/supervisor/pusher.err
+stdout_logfile=/var/log/data_sync/sender.log
+stderr_logfile=/var/log/data_sync/sender.err
 stopasgroup=true
 
 [program:writer]
@@ -25,17 +25,6 @@ directory=/opt/kafka/class
 user=kafka
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/supervisor/writer.log
-stderr_logfile=/var/log/supervisor/writer.err
-stopasgroup=true
-
-# Don't need this one
-#/etc/supervisor/conf.d/zkeeper.conf
-[program:zkeeper]
-command=/opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
-directory=/opt/kafka
-autostart=true
-autorestart=true
-stdout_logfile=/var/log/supervisor/zkeeper.log
-stderr_logfile=/var/log/supervisor/zkeeper.err
+stdout_logfile=/var/log/data_sync/writer.log
+stderr_logfile=/var/log/data_sync/writer.err
 stopasgroup=true
